@@ -1,0 +1,24 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Modifies and introduces new mob behaviours and abilities for a more challenging survival experience.",
+        "name": "Ruthless Mobs",
+        "uuid": "7babab9b-6f8c-48a9-9bd9-30cdb2664abf",
+        "version": [ 1, 0, 0 ],
+        "min_engine_version": [ 1, 20, 0 ]
+    },
+    "modules": [
+        {
+            "description": "Modifies and introduces new mob behaviours and abilities for a more challenging survival experience.",
+            "type": "data",
+            "uuid": "5f6a1437-de73-4ec1-8402-95fcc216d178",
+            "version": [1, 0, 0]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "66c6e9a8-3093-462a-9c36-dbb052165822",
+            "version": [1, 0, 0]
+        }
+    ]
+}

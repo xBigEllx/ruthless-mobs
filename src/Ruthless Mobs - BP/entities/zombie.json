@@ -1,0 +1,986 @@
+{
+	"format_version": "1.17.20",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "minecraft:zombie",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"ruthlessmobs:super_state": {
+				"minecraft:type_family": {
+					"family": ["super", "zombie", "undead", "monster", "mob"]
+				},
+				"minecraft:scale": {
+					"value": 2.0
+				},
+				"minecraft:movement": {
+					"value": 0.2
+				},
+				"minecraft:health": {
+					"value": 80,
+					"max": 80
+				},
+				"minecraft:attack": {
+					"damage": 12
+				},
+				"minecraft:follow_range": {
+					"value": 64.0
+				},
+				"minecraft:behavior.nearest_attackable_target": {
+					"priority": 2,
+					"within_radius": 64.0,
+					"reselect_targets": true,
+					"entity_types": [{
+						"filters": {
+							"none_of": [{
+									"test": "is_family",
+									"subject": "other",
+									"value": "monster"
+								},
+								{
+									"test": "is_family",
+									"subject": "other",
+									"value": "fish"
+								},
+								{
+									"test": "is_family",
+									"subject": "other",
+									"value": "squid"
+								}
+							]
+						},
+						"max_dist": 64.0
+					}],
+					"must_see": true,
+					"must_see_forget_duration": 17.0
+				},
+				"minecraft:break_blocks": {
+					"breakable_blocks": [
+						"bamboo",
+						"bamboo_sapling",
+						"beetroot",
+						"brown_mushroom",
+						"carrots",
+						"carved_pumpkin",
+						"chorus_flower",
+						"chorus_plant",
+						"deadbush",
+						"double_plant",
+						"leaves",
+						"leaves2",
+						"lit_pumpkin",
+						"melon_block",
+						"melon_stem",
+						"potatoes",
+						"pumpkin",
+						"pumpkin_stem",
+						"red_flower",
+						"red_mushroom",
+						"crimson_fungus",
+						"warped_fungus",
+						"reeds",
+						"sapling",
+						"snow_layer",
+						"sweet_berry_bush",
+						"tallgrass",
+						"turtle_egg",
+						"vine",
+						"waterlily",
+						"wheat",
+						"yellow_flower",
+						"azalea",
+						"flowering_azalea",
+						"azalea_leaves",
+						"azalea_leaves_flowered",
+						"cave_vines",
+						"cave_vines_body_with_berries",
+						"cave_vines_head_with_berries",
+						"small_dripleaf_block",
+						"big_dripleaf",
+						"spore_blossom",
+						"hanging_roots",
+						"mangrove_leaves",
+					
+						"acacia_door",
+						"acacia_fence_gate",
+						"acacia_fence",
+						"acacia_stairs",
+						"bed",
+						"birch_door",
+						"birch_fence",
+						"birch_fence_gate",
+						"blast_furnace",
+						"chest",
+						"clay",
+						"cobblestone",
+						"cobblestone_wall",
+						"concrete",
+						"crafting_table",
+						"dark_oak_door",
+						"dark_oak_fence",
+						"dark_oak_fence_gate",
+						"dark_oak_stairs",
+						"dirt",
+						"double_wooden_slab",
+						"fence",
+						"fence_gate",
+						"frosted_ice",
+						"furnace",
+						"glass",
+						"glass_pane",
+						"gravel",
+						"ice",
+						"jungle_door",
+						"jungle_fence",
+						"jungle_fence_gate",
+						"jungle_stairs",
+						"leaves",
+						"leaves2",
+						"log",
+						"log2",
+						"mossy_cobblestone",
+						"mossy_cobblestone_stairs",
+						"oak_stairs",
+						"packed_ice",
+						"planks",
+						"smoker",
+						"snow",
+						"spruce_door",
+						"spruce_fence",
+						"spruce_fence_gate",
+						"spruce_stairs",
+						"sandstone",
+						"sandstone_stairs",
+						"stained_glass",
+						"stained_glass_pane",
+						"stone_stairs",
+						"stonebrick",
+						"stone_brick_stairs",
+						"torch",
+						"wood",
+						"wooden_door",
+						"wooden_slab",
+						"wooden_trapdoor"
+					]
+				}
+			},
+
+			"ruthlessmobs:hardcore_mode": {
+				"minecraft:follow_range": {
+					"value": 96.0
+				},
+				"minecraft:behavior.nearest_attackable_target": {
+					"priority": 2,
+					"within_radius": 96.0,
+					"reselect_targets": true,
+					"entity_types": [{
+						"filters": {
+							"none_of": [{
+									"test": "is_family",
+									"subject": "other",
+									"value": "monster"
+								},
+								{
+									"test": "is_family",
+									"subject": "other",
+									"value": "fish"
+								},
+								{
+									"test": "is_family",
+									"subject": "other",
+									"value": "squid"
+								}
+							]
+						},
+						"max_dist": 96.0
+					}],
+					"must_see": false,
+					"must_see_forget_duration": 17.0
+				}
+			},
+			
+			"ruthlessmobs:random_teleporting": {
+				"minecraft:teleport": {
+					"random_teleports": true,
+					"random_teleport_cube": [ 32, 32, 32 ],
+					"target_distance": 32,
+					"target_teleport_chance": 1,
+					"light_teleport_chance": 1
+				},
+				"minecraft:timer":{
+						"looping": true,
+						"randomInterval":true,
+						"time": [0.0, 0.0],
+						"time_down_event": {
+								"event":"ruthlessmobs:stop_random_teleport"
+						}
+				}
+			},
+
+			"minecraft:look_to_start_drowned_transformation": {
+				"minecraft:environment_sensor": {
+					"triggers": {
+						"filters": {
+							"test": "is_underwater",
+							"subject": "self",
+							"operator": "==",
+							"value": true
+						},
+						"event": "minecraft:start_transforming"
+					}
+				}
+			},
+			"minecraft:start_drowned_transformation": {
+				"minecraft:environment_sensor": {
+					"triggers": {
+						"filters": {
+							"test": "is_underwater",
+							"subject": "self",
+							"operator": "==",
+							"value": false
+						},
+						"event": "minecraft:stop_transforming"
+					}
+				},
+				"minecraft:timer": {
+					"looping": false,
+					"time": 30,
+					"time_down_event": {
+						"event": "minecraft:convert_to_drowned"
+					}
+				}
+			},
+
+			"minecraft:convert_to_drowned": {
+				"minecraft:transformation": {
+					"into": "minecraft:drowned<minecraft:as_adult>",
+					"transformation_sound": "convert_to_drowned",
+					"drop_equipment": true,
+					"delay": {
+						"value": 15
+					}
+				},
+				"minecraft:is_shaking": {}
+			},
+
+			"minecraft:convert_to_baby_drowned": {
+				"minecraft:transformation": {
+					"into": "minecraft:drowned<minecraft:as_baby>",
+					"transformation_sound": "convert_to_drowned",
+					"drop_equipment": true,
+					"delay": {
+						"value": 15
+					}
+				},
+				"minecraft:is_shaking": {}
+			},
+
+			"minecraft:zombie_baby": {
+				"minecraft:experience_reward": {
+					"on_death": "query.last_hit_by_player ? 12 + (query.equipment_count * Math.Random(1,3)) : 0"
+				},
+				"minecraft:is_baby": {},
+				"minecraft:scale": {
+					"value": 0.5
+				},
+				"minecraft:movement": {
+					"value": 0.35
+				}
+			},
+
+			"minecraft:zombie_adult": {
+				"minecraft:experience_reward": {
+					"on_death": "query.last_hit_by_player ? 5 + (query.equipment_count * Math.Random(1,3)) : 0"
+				},
+				"minecraft:movement": {
+					"value": 0.23
+				},
+				"minecraft:rideable": {
+					"seat_count": 1,
+					"family_types": [
+						"zombie"
+					],
+					"seats": {
+						"position": [0.0, 1.1, -0.35],
+						"lock_rider_rotation": 0
+					}
+				},
+				"minecraft:behavior.mount_pathing": {
+					"priority": 2,
+					"speed_multiplier": 1.25,
+					"target_dist": 0.0,
+					"track_target": true
+				},
+				"minecraft:behavior.move_to_block": {
+					"priority": 3,
+					"goal_radius": 0.1,
+					"search_height": 4,
+					"stay_duration": 5,
+					"search_range": 12,
+					"speed_multiplier": 1.0,
+					"target_selection_method": "nearest",
+					"target_blocks": [
+						//"acacia_pressure_plate",
+						//"birch_pressure_plate",
+						//"crimson_pressure_plate",
+						//"dark_oack_pressure_plate",
+						//"jungle_pressure_plate",
+						//"polished_blackstone_pressure_plate",
+						//"spruce_pressure_plate",
+						//"stone_pressure_plate",
+						"redstone_torch",
+						"torch"
+						//"warped_pressure_plate",
+						//"wooden_pressure_plate"
+					]
+				},
+				"minecraft:break_blocks": {
+					"breakable_blocks": [
+						"bamboo",
+						"bamboo_sapling",
+						"beetroot",
+						"brown_mushroom",
+						"carrots",
+						"carved_pumpkin",
+						"chorus_flower",
+						"chorus_plant",
+						"deadbush",
+						"double_plant",
+						"leaves",
+						"leaves2",
+						"lit_pumpkin",
+						"melon_block",
+						"melon_stem",
+						"potatoes",
+						"pumpkin",
+						"pumpkin_stem",
+						"red_flower",
+						"red_mushroom",
+						"crimson_fungus",
+						"warped_fungus",
+						"reeds",
+						"sapling",
+						"snow_layer",
+						"sweet_berry_bush",
+						"tallgrass",
+						"turtle_egg",
+						"vine",
+						"waterlily",
+						"wheat",
+						"yellow_flower",
+						"azalea",
+						"flowering_azalea",
+						"azalea_leaves",
+						"azalea_leaves_flowered",
+						"cave_vines",
+						"cave_vines_body_with_berries",
+						"cave_vines_head_with_berries",
+						"small_dripleaf_block",
+						"big_dripleaf",
+						"spore_blossom",
+						"hanging_roots",
+						"mangrove_leaves",
+						
+						"acacia_door",
+						"acacia_fence",
+						"acacia_fence_gate",
+						"bed",
+						"birch_door",
+						"birch_fence",
+						"birch_fence_gate",
+						"blast_furnace",
+						"chest",
+						"crafting_table",
+						"dark_oak_door",
+						"dark_oak_fence",
+						"dark_oak_fence_gate",
+						"fence",
+						"fence_gate",
+						"frosted_ice",
+						"furnace",
+						"glass",
+						"glass_pane",
+						"glowstone",
+						"ice",
+						"jungle_door",
+						"jungle_fence",
+						"jungle_fence_gate",
+						"packed_ice",
+						"smoker",
+						"snow",
+						"spruce_door",
+						"spruce_fence",
+						"spruce_fence_gate",
+						"stained_glass",
+						"stained_glass_pane",
+						"torch",
+						"wooden_door",
+						"wooden_trapdoor"
+					]
+				}
+			},
+
+			"minecraft:zombie_jockey": {
+				"minecraft:behavior.find_mount": {
+					"priority": 1,
+					"within_radius": 16,
+					"start_delay": 15,
+					"max_failed_attempts": 20
+				}
+			},
+			"minecraft:can_have_equipment": {
+				"minecraft:equipment": {
+					"table": "loot_tables/entities/zombie_equipment.json"
+				}
+			},
+			"minecraft:can_break_doors": {
+				"minecraft:annotation.break_door": {}
+			}
+		},
+
+		"components": {
+			"minecraft:follow_range": {
+				"value": 48.0
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:navigation.climb": {
+				"is_amphibious": true,
+				"can_pass_doors": true,
+				"can_walk": true,
+				"can_break_doors": true
+			},
+			"minecraft:behavior.float": {
+				"priority": 1
+			},
+			"minecraft:is_hidden_when_invisible": {},
+			"minecraft:nameable": {},
+
+			"minecraft:type_family": {
+				"family": ["zombie", "undead", "monster", "mob"]
+			},
+			"minecraft:equip_item": {},
+			"minecraft:collision_box": {
+				"width": 0.6,
+				"height": 1.9
+			},
+			"minecraft:burns_in_daylight": {},
+
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			"minecraft:health": {
+				"value": 20,
+				"max": 20
+			},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [{
+					"filters": {
+						"test": "in_lava",
+						"subject": "self",
+						"operator": "==",
+						"value": true
+					},
+					"cause": "lava",
+					"damage_per_tick": 4
+				}]
+			},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": 0,
+				"breathes_air": true,
+				"breathes_water": true
+			},
+			"minecraft:attack": {
+				"damage": 3
+			},
+			"minecraft:loot": {
+				"table": "loot_tables/entities/zombie.json"
+			},
+			"minecraft:shareables": {
+				"items": [{
+						"item": "minecraft:netherite_sword",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 0
+					},
+					{
+						"item": "minecraft:diamond_sword",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 1
+					},
+					{
+						"item": "minecraft:iron_sword",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 2
+					},
+					{
+						"item": "minecraft:stone_sword",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 3
+					},
+					{
+						"item": "minecraft:golden_sword",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 4
+					},
+					{
+						"item": "minecraft:wooden_sword",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 5
+					},
+					{
+						"item": "minecraft:netherite_helmet",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 0
+					},
+					{
+						"item": "minecraft:diamond_helmet",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 1
+					},
+					{
+						"item": "minecraft:iron_helmet",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 2
+					},
+					{
+						"item": "minecraft:chainmail_helmet",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 3
+					},
+					{
+						"item": "minecraft:golden_helmet",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 4
+					},
+					{
+						"item": "minecraft:leather_helmet",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 5
+					},
+					{
+						"item": "minecraft:turtle_helmet",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 6
+					},
+					{
+						"item": "minecraft:skull:0",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 7
+					},
+					{
+						"item": "minecraft:skull:1",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 7
+					},
+					{
+						"item": "minecraft:carved_pumpkin",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 7
+					},
+					{
+						"item": "minecraft:netherite_chestplate",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 0
+					},
+					{
+						"item": "minecraft:diamond_chestplate",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 1
+					},
+					{
+						"item": "minecraft:iron_chestplate",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 2
+					},
+					{
+						"item": "minecraft:chainmail_chestplate",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 3
+					},
+					{
+						"item": "minecraft:golden_chestplate",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 4
+					},
+					{
+						"item": "minecraft:leather_chestplate",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 5
+					},
+					{
+						"item": "minecraft:netherite_leggings",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 0
+					},
+					{
+						"item": "minecraft:diamond_leggings",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 1
+					},
+					{
+						"item": "minecraft:iron_leggings",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 2
+					},
+					{
+						"item": "minecraft:chainmail_leggings",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 3
+					},
+					{
+						"item": "minecraft:golden_leggings",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 4
+					},
+					{
+						"item": "minecraft:leather_leggings",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 5
+					},
+					{
+						"item": "minecraft:netherite_boots",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 0
+					},
+					{
+						"item": "minecraft:diamond_boots",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 1
+					},
+					{
+						"item": "minecraft:iron_boots",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 2
+					},
+					{
+						"item": "minecraft:chainmail_boots",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 3
+					},
+					{
+						"item": "minecraft:golden_boots",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 4
+					},
+					{
+						"item": "minecraft:leather_boots",
+						"want_amount": 1,
+						"surplus_amount": 1,
+						"priority": 5
+					}
+				]
+			},
+
+			"minecraft:environment_sensor": {
+				"triggers": {
+					"filters": {
+						"test": "is_underwater",
+						"operator": "==",
+						"value": true
+					},
+					"event": "minecraft:start_transforming"
+				}
+			},
+
+			"minecraft:despawn": {
+				"despawn_from_distance": {}
+			},
+
+			"minecraft:behavior.equip_item": {
+				"priority": 2
+			},
+			"minecraft:behavior.melee_attack": {
+				"priority": 3
+			},
+			"minecraft:behavior.stomp_turtle_egg": {
+				"priority": 4,
+				"speed_multiplier": 1,
+				"search_range": 16,
+				"search_height": 2,
+				"goal_radius": 1.14,
+				"interval": 20
+			},
+			"minecraft:behavior.pickup_items": {
+				"priority": 6,
+				"max_dist": 3,
+				"goal_radius": 2,
+				"speed_multiplier": 1.0,
+				"pickup_based_on_chance": true,
+				"can_pickup_any_item": true,
+				"excluded_items": [
+					"minecraft:glow_ink_sac"
+				]
+			},
+			"minecraft:behavior.move_towards_restriction": {
+				"priority": 5,
+				"speed_multiplier": 1
+			},
+			"minecraft:behavior.random_stroll": {
+				"priority": 7,
+				"speed_multiplier": 1
+			},
+			"minecraft:behavior.look_at_player": {
+				"priority": 8,
+				"look_distance": 6,
+				"probability": 0.02
+			},
+			"minecraft:behavior.random_look_around": {
+				"priority": 9
+			},
+			"minecraft:behavior.hurt_by_target": {
+				"priority": 1
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+				"priority": 2,
+				"within_radius": 48.0,
+				"reselect_targets": true,
+				"entity_types": [{
+					"filters": {
+						"none_of": [{
+								"test": "is_family",
+								"subject": "other",
+								"value": "monster"
+							},
+							{
+								"test": "is_family",
+								"subject": "other",
+								"value": "fish"
+							},
+							{
+								"test": "is_family",
+								"subject": "other",
+								"value": "squid"
+							}
+						]
+					},
+					"max_dist": 48.0
+				}],
+				"must_see": true,
+				"must_see_forget_duration": 17.0
+			},
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:conditional_bandwidth_optimization": {}
+		},
+
+		"events": {
+			"minecraft:entity_spawned": {
+				"sequence": [{
+						"randomize": [{
+								"weight": 380,
+								"remove": {},
+								"add": {
+									"component_groups": [
+										"minecraft:zombie_adult",
+										"minecraft:can_have_equipment"
+									]
+								}
+							},
+							{
+								"weight": 17,
+								"remove": {},
+								"add": {
+									"component_groups": [
+										"minecraft:zombie_baby",
+										"minecraft:can_have_equipment"
+									]
+
+								}
+							},
+							{
+								"weight": 3,
+								"remove": {},
+								"add": {
+									"component_groups": [
+										"minecraft:zombie_baby",
+										"minecraft:zombie_jockey",
+										"minecraft:can_have_equipment"
+									]
+								}
+							}
+						]
+					},
+					{
+						"add": {
+							"component_groups": ["minecraft:can_break_doors"]
+						}
+					},
+					{
+						"filters": {
+							"all_of": [{
+								"test": "moon_phase",
+								"value": 0
+							}]
+						},
+						"add": {
+							"component_groups": ["ruthlessmobs:hardcore_mode"]
+						}
+					},
+					{
+						"filters": {
+							"none_of": [{
+								"test": "moon_phase",
+								"value": 0
+							}]
+						},
+						"randomize": [{
+								"weight": 2,
+								"filters": {
+									"test": "is_underground",
+									"value": false
+								},
+								"remove": {},
+								"add": {
+									"component_groups": [
+										"ruthlessmobs:super_state"
+									]
+								}
+							},
+							{
+								"weight": 98
+							}
+						]
+					},
+					{
+						"filters": {
+							"all_of": [{
+								"test": "moon_phase",
+								"value": 0
+							}]
+						},
+						"randomize": [{
+								"weight": 5,
+								"filters": {
+									"test": "is_underground",
+									"value": false
+								},
+								"remove": {},
+								"add": {
+									"component_groups": [
+										"ruthlessmobs:super_state"
+									]
+								}
+							},
+							{
+								"weight": 95
+							}
+						]
+					}
+				]
+			},
+			"minecraft:as_adult": {
+				"add": {
+					"component_groups": [
+						"minecraft:zombie_adult"
+					]
+				}
+			},
+			"minecraft:as_baby": {
+				"add": {
+					"component_groups": [
+						"minecraft:zombie_baby"
+					]
+				}
+			},
+			"minecraft:start_transforming": {
+				"add": {
+					"component_groups": [
+						"minecraft:start_drowned_transformation"
+					]
+				},
+				"remove": {
+					"component_groups": ["minecraft:look_to_start_drowned_transformation"]
+				}
+			},
+			"minecraft:stop_transforming": {
+				"add": {
+					"component_groups": [
+						"minecraft:look_to_start_drowned_transformation"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"minecraft:start_drowned_transformation"
+					]
+				}
+			},
+			"minecraft:convert_to_drowned": {
+				"sequence": [{
+						"filters": {
+							"test": "has_component",
+							"operator": "!=",
+							"value": "minecraft:is_baby"
+						},
+						"add": {
+							"component_groups": ["minecraft:convert_to_drowned"]
+						},
+						"remove": {
+							"component_groups": ["minecraft:start_drowned_transformation"]
+						}
+					},
+					{
+						"filters": {
+							"test": "has_component",
+							"value": "minecraft:is_baby"
+						},
+						"add": {
+							"component_groups": ["minecraft:convert_to_baby_drowned"]
+						},
+						"remove": {
+							"component_groups": ["minecraft:start_drowned_transformation"]
+						}
+					}
+				]
+			},
+			
+			"ruthlessmobs:random_teleport": {
+				"add": {
+					"component_groups": ["ruthlessmobs:random_teleporting"]
+				}
+			},
+			
+			"ruthlessmobs:stop_random_teleport": {
+				"remove": {
+					"component_groups": ["ruthlessmobs:random_teleporting"]
+				}
+			}
+		}
+	}
+}
