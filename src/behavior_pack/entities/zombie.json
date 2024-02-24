@@ -82,7 +82,6 @@
 						"warped_fungus",
 						"reeds",
 						"sapling",
-						"snow_layer",
 						"sweet_berry_bush",
 						"tallgrass",
 						"turtle_egg",
@@ -146,7 +145,6 @@
 						"packed_ice",
 						"planks",
 						"smoker",
-						"snow",
 						"spruce_door",
 						"spruce_fence",
 						"spruce_fence_gate",
@@ -322,18 +320,8 @@
 					"speed_multiplier": 1.0,
 					"target_selection_method": "nearest",
 					"target_blocks": [
-						//"acacia_pressure_plate",
-						//"birch_pressure_plate",
-						//"crimson_pressure_plate",
-						//"dark_oack_pressure_plate",
-						//"jungle_pressure_plate",
-						//"polished_blackstone_pressure_plate",
-						//"spruce_pressure_plate",
-						//"stone_pressure_plate",
 						"redstone_torch",
 						"torch"
-						//"warped_pressure_plate",
-						//"wooden_pressure_plate"
 					]
 				},
 				"minecraft:break_blocks": {
@@ -362,7 +350,6 @@
 						"warped_fungus",
 						"reeds",
 						"sapling",
-						"snow_layer",
 						"sweet_berry_bush",
 						"tallgrass",
 						"turtle_egg",
@@ -409,7 +396,6 @@
 						"jungle_fence_gate",
 						"packed_ice",
 						"smoker",
-						"snow",
 						"spruce_door",
 						"spruce_fence",
 						"spruce_fence_gate",
